@@ -21,6 +21,7 @@ class Game {
   #loadGame() {
     this.#word = new Dictionnary().getOneWord().split("");
     this.#hiddenWord = this.#hideWord(this.#word);
+    this.#displayScore();
   }
   manageTurns(input) {
     input ? input[0].toLowerCase() : "";
@@ -39,11 +40,13 @@ class Game {
     this.#displayText("letters");
     if (!this.#hiddenWord.includes("_")) {
       this.#displayGameResult("win");
+      victories++;
       document.querySelector("#playerInput").setAttribute("disabled", true);
       document.querySelector("#newGame").style = "display:block";
     }
     if (this.#actualTurn === this.#numberOfTurns) {
       this.#displayGameResult("lost");
+      defeats++;
       document.querySelector("#playerInput").setAttribute("disabled", true);
       document.querySelector("#newGame").style = "display:block";
     }
@@ -86,18 +89,6 @@ class Game {
           Object.values(specialChar)[0].toUpperCase();
       });
     }
-  }
-  #display(talkDrawWord, message = null) {
-    let toDo;
-    switch (talkDrawWord) {
-      case "win":
-        toDo = `Félicitation! Le mot était bien ${this.#word.join("")}`;
-        break;
-      case "lost":
-        toDo = `Désolé vous avez perdu! Le mot était ${this.#word.join("")}`;
-        break;
-    }
-    console.log(toDo);
   }
   /*   #draw(state) {
     let drawing;
@@ -216,5 +207,9 @@ class Game {
       result === "win"
         ? `Félicitation! Le mot était bien ${this.#word.join("")}`
         : `Désolé vous avez perdu! Le mot était ${this.#word.join("")}`;
+  }
+  #displayScore() {
+    document.querySelector(`#victories`).innerHTML = victories;
+    document.querySelector(`#defeats`).innerHTML = defeats;
   }
 }

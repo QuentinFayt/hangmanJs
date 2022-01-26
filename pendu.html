@@ -12,10 +12,11 @@
 <body>
     <main>
         <h1>Jeu du pendu</h1>
+        <h4>Victoire(s): <span id="victories"></span> | Défaite(s) <span id="defeats"></span></h4>
         <input type="button" value="Lancer une partie" id="loadGame" />
         <div id="game">
             <img src="./images/pendu0.png" alt="hangman" id="hangman" />
-            <h1 id="word">Test</h1>
+            <h1 id="word"></h1>
             <h3>Lettre(s) que vous avez déjà testé : <span id="letters"></span></h3>
             <h3 id="result"></h3>
             <input type="text" minlength="1" maxlength="1" id="playerInput">

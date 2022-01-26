@@ -1,6 +1,7 @@
 class Game {
   #word;
   #numberOfTurns = 10;
+  #actualTurn = 0;
   #separators = ["-", " ", "'"];
   #specialChar = {
     a: ["á", "à", "â", "ä"],
@@ -20,38 +21,32 @@ class Game {
   #loadGame() {
     this.#word = new Dictionnary().getOneWord().split("");
     this.#hiddenWord = this.#hideWord(this.#word);
-    let result = this.#manageTurns();
-    console.clear();
-    this.#display("draw", result);
-    this.#display("word");
-    result ? this.#display("win") : this.#display("lost");
   }
-  #manageTurns() {
-    let count = 0;
-    while (count < this.#numberOfTurns) {
-      console.clear();
-      this.#display("draw", count);
-      this.#display("word");
-      this.#display(
-        "talk",
-        `Lettre(s) que vous avez déjà tenté: ${this.#wrongLetters.join(" ")}`
-      );
-      let input = prompt("Devine une lettre");
-      input ? input[0].toLowerCase() : "";
-      if (!this.#wrongLetters.includes(input)) {
-        let letterGuessed = this.#checkLetter(input);
-        if (letterGuessed["normal"].length || letterGuessed["special"].length) {
-          this.#revealLetters(letterGuessed, input);
-          if (!this.#hiddenWord.includes("_")) {
-            return count;
-          }
-        } else {
-          this.#wrongLetters.push(input);
-          count++;
-        }
+  manageTurns(input) {
+    input ? input[0].toLowerCase() : "";
+    if (!this.#wrongLetters.includes(input)) {
+      let letterGuessed = this.#checkLetter(input);
+      if (letterGuessed["normal"].length || letterGuessed["special"].length) {
+        this.#revealLetters(letterGuessed, input);
+      } else {
+        this.#wrongLetters.push(input);
+        this.#actualTurn++;
       }
     }
-    return count;
+    console.clear();
+    this.#manageDrawing(this.#actualTurn);
+    this.#displayText("word");
+    this.#displayText("letters");
+    if (!this.#hiddenWord.includes("_")) {
+      this.#displayGameResult("win");
+      document.querySelector("#playerInput").setAttribute("disabled", true);
+      document.querySelector("#newGame").style = "display:block";
+    }
+    if (this.#actualTurn === this.#numberOfTurns) {
+      this.#displayGameResult("lost");
+      document.querySelector("#playerInput").setAttribute("disabled", true);
+      document.querySelector("#newGame").style = "display:block";
+    }
   }
   #hideWord(letters) {
     let word = [];
@@ -95,15 +90,6 @@ class Game {
   #display(talkDrawWord, message = null) {
     let toDo;
     switch (talkDrawWord) {
-      case "talk":
-        toDo = message;
-        break;
-      case "draw":
-        toDo = this.draw(message);
-        break;
-      case "word":
-        toDo = this.#hiddenWord.join(" ");
-        break;
       case "win":
         toDo = `Félicitation! Le mot était bien ${this.#word.join("")}`;
         break;
@@ -113,7 +99,7 @@ class Game {
     }
     console.log(toDo);
   }
-  draw(state) {
+  /*   #draw(state) {
     let drawing;
     switch (state) {
       case 0:
@@ -214,5 +200,21 @@ class Game {
         break;
     }
     return drawing;
+  } */
+  #manageDrawing(state) {
+    document.querySelector("#hangman").src =
+      "file:///D:/exercices/hangmanJs/images/pendu" + state + ".png";
+  }
+  #displayText(element) {
+    document.querySelector(`#${element}`).innerHTML =
+      element === "word"
+        ? this.#hiddenWord.join(" ")
+        : this.#wrongLetters.join(" ").toUpperCase();
+  }
+  #displayGameResult(result) {
+    document.querySelector(`#result`).innerHTML =
+      result === "win"
+        ? `Félicitation! Le mot était bien ${this.#word.join("")}`
+        : `Désolé vous avez perdu! Le mot était ${this.#word.join("")}`;
   }
 }

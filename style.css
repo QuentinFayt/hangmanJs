@@ -1,6 +1,23 @@
-/* #game {
+main {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2em;
+}
+#game {
   display: none;
-} */
+  flex-direction: column;
+  width: 30%;
+  margin: 0 auto;
+  padding: 2em;
+}
+#game * {
+  margin: 1em;
+}
 #newGame {
   display: none;
+}
+h3 {
+  width: 100%;
+  text-align: left;
 }

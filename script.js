@@ -1,24 +1,31 @@
-/* if (document.querySelector("#loadGame")) {
+let game;
+if (document.querySelector("#loadGame")) {
   document.querySelector("#loadGame").addEventListener("click", function (ev) {
     this.style = "display:none";
-    this.nextElementSibling.style = "display:block";
+    this.nextElementSibling.style = "display:flex";
     setTimeout(() => {
-      new Game();
+      game = new Game();
+      document.querySelector("#playerInput").focus();
+      game.manageTurns("");
     }, 250);
   });
 }
 if (document.querySelector("#newGame")) {
   document.querySelector("#newGame").addEventListener("click", function (ev) {
+    document.querySelector("#playerInput").setAttribute("disabled", false);
     this.style = "display:none";
-    new Game();
+    game = new Game();
+    document.querySelector("#playerInput").focus();
+    game.manageTurns("");
   });
 }
- */
+
 let input;
 document.addEventListener("keydown", (ev) => {
   let key = ev.key;
   if (key === "Enter") {
-    input = document.querySelector("#playerInput").value;
+    let input = document.querySelector("#playerInput").value;
+    game.manageTurns(input);
     document.querySelector("#playerInput").value = "";
   }
 });

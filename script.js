@@ -1,7 +1,6 @@
 let game;
 let victories = 0;
 let defeats = 0;
-let input;
 function manageKey(ev) {
   let key = ev.key;
   if (game.authorizedInput.includes(key)) {

@@ -6,21 +6,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet">
     <title>Pendu</title>
 </head>
 
 <body>
     <main>
-        <h1>Jeu du pendu</h1>
-        <h4>Victoire(s): <span id="victories"></span> | Défaite(s) <span id="defeats"></span></h4>
-        <input type="button" value="Lancer une partie" id="loadGame" />
-        <div id="game">
+        <div class="title">
+            <h1>Jeu du pendu</h1>
+        </div>
+        <div class="points">
+            <h1>Victoires</h1>
+            <h1>Défaites</h1>
+            <h1><span id="victories"></span></h1>
+            <h1><span id="defeats"></span></h1>
+        </div>
+
+        <div class="img">
             <img src="./images/pendu0.png" alt="hangman" id="hangman" />
-            <h1 id="word"></h1>
-            <h3>Lettre(s) que vous avez déjà testé : <span id="letters"></span></h3>
-            <h3>Nombres de lettre à deviner:<span id="numberOfLettersToGuess"></span></h3>
-            <h3 id="result"></h3>
-            <h3 id="newGame"></h3>
+        </div>
+        <div class="word">
+            <h1><span id="numberOfLettersToGuess"></span><span id="word"></span></h1>
+        </div>
+        <div class="letters">
+            <h1><span id="letters"></span></h1>
+        </div>
+        <div class="result">
+            <h1 id="result"></h1>
+        </div>
+        <div class="enter">
+            <input type="button" value="Lancer une partie" id="loadGame" />
+            <h1 id="newGame"></h1>
         </div>
 
     </main>

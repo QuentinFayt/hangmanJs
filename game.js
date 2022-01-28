@@ -236,8 +236,8 @@ class Game {
     document.removeEventListener("keydown", manageKey);
     document.querySelector(`#result`).innerHTML =
       result === "win"
-        ? `Félicitation! Le mot était bien ${this.#word.join("")}`
-        : `Désolé vous avez perdu! Le mot était ${this.#word.join("")}`;
+        ? `Félicitation! Le mot était bien : ${this.#word.join("")}`
+        : `Désolé vous avez perdu! Le mot était: ${this.#word.join("")}`;
     result === "win" ? victories++ : defeats++;
     this.#displayScore();
     document.addEventListener("keydown", newGame);

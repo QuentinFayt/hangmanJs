@@ -1,27 +1,86 @@
-main {
-  width: 90%;
-  margin: 0 auto;
+html * {
+  box-sizing: content-box;
+  font-family: "Fredericka the Great", cursive;
+  color: white;
   text-align: center;
-  padding: 2em;
 }
-#game {
-  display: none;
-  flex-direction: column;
-  width: 30%;
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6 {
+  margin: 0;
+}
+body {
+  background-image: url("./images/pendu_Background.png");
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+}
+main {
+  display: grid;
+  grid-template-areas:
+    ". title ."
+    "letters img points"
+    ". word ."
+    ". result ."
+    ". enter .";
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 0.5fr 3fr 0.5fr 1fr 0.5fr;
   margin: 0 auto;
-  padding: 2em;
+  gap: 0.5em;
+  height: 80vh;
+  padding: 3em;
 }
-#game * {
-  margin: 1em;
+.title {
+  grid-area: title;
+}
+.title h1 {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.points {
+  grid-area: points;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 3fr;
+}
+.img {
+  grid-area: img;
+  width: 100%;
 }
 #hangman {
-  width: 50%;
-  margin: 0 auto;
-}
-h3 {
   width: 100%;
-  text-align: left;
+}
+.letters {
+  grid-area: letters;
+  display: block;
+  width: 90%;
+  height: 90%;
+  padding: 2em;
+}
+.word {
+  grid-area: word;
+}
+.result {
+  grid-area: result;
+}
+.enter {
+  grid-area: enter;
+}
+#hangman {
+  margin: 0 auto;
 }
 #word {
   white-space: pre;
+  margin-left: 1em;
+}
+#loadGame {
+  color: black;
+}
+#newGame {
+  align-items: center;
+  justify-content: center;
 }

@@ -19,6 +19,34 @@ class Game {
   }
 
   #loadGame() {
+    this.authorizedInput = [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f",
+      "g",
+      "h",
+      "i",
+      "j",
+      "k",
+      "l",
+      "m",
+      "n",
+      "o",
+      "p",
+      "q",
+      "r",
+      "s",
+      "t",
+      "u",
+      "v",
+      "w",
+      "x",
+      "y",
+      "z",
+    ];
     this.#word = new Dictionnary().getOneWord().split("");
     this.#hiddenWord = this.#hideWord(this.#word);
     this.#displayScore();
@@ -34,21 +62,15 @@ class Game {
         this.#actualTurn++;
       }
     }
-    console.clear();
     this.#manageDrawing(this.#actualTurn);
     this.#displayText("word");
     this.#displayText("letters");
+    this.#displayNumberToGuess();
     if (!this.#hiddenWord.includes("_")) {
-      this.#displayGameResult("win");
-      victories++;
-      document.querySelector("#playerInput").setAttribute("disabled", true);
-      document.querySelector("#newGame").style = "display:block";
+      this.#gameResult("win");
     }
     if (this.#actualTurn === this.#numberOfTurns) {
-      this.#displayGameResult("lost");
-      defeats++;
-      document.querySelector("#playerInput").setAttribute("disabled", true);
-      document.querySelector("#newGame").style = "display:block";
+      this.#gameResult("lost");
     }
   }
   #hideWord(letters) {
@@ -193,20 +215,33 @@ class Game {
     return drawing;
   } */
   #manageDrawing(state) {
-    document.querySelector("#hangman").src =
-      "file:///D:/exercices/hangmanJs/images/pendu" + state + ".png";
+    document.querySelector("#hangman").src = "./images/pendu" + state + ".png";
   }
   #displayText(element) {
     document.querySelector(`#${element}`).innerHTML =
       element === "word"
-        ? this.#hiddenWord.join(" ")
+        ? this.#hiddenWord.join("")
         : this.#wrongLetters.join(" ").toUpperCase();
   }
-  #displayGameResult(result) {
+  #displayNumberToGuess() {
+    let number = 0;
+    this.#hiddenWord.forEach((letter) => {
+      if (letter === "_") {
+        number++;
+      }
+    });
+    document.querySelector(`#numberOfLettersToGuess`).innerHTML = number;
+  }
+  #gameResult(result) {
+    document.removeEventListener("keydown", manageKey);
     document.querySelector(`#result`).innerHTML =
       result === "win"
         ? `Félicitation! Le mot était bien ${this.#word.join("")}`
         : `Désolé vous avez perdu! Le mot était ${this.#word.join("")}`;
+    result === "win" ? victories++ : defeats++;
+    document.addEventListener("keydown", newGame);
+    document.querySelector(`#newGame`).innerHTML =
+      "Appuyez sur Enter pour rejouer!";
   }
   #displayScore() {
     document.querySelector(`#victories`).innerHTML = victories;

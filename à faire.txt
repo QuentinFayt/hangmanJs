@@ -1,7 +1,0 @@
-sauvegarder l'instance de ma partie dans une variable
-
-extraire la logique de gestion de tour pour ne plus avoir de boucle
-et lancer les méthodes en fonctions des interactions de l'utilisateur
-=> écouteur d'évènements.
-
-toute action dans la console doit être traduite en reconstruction de l'html

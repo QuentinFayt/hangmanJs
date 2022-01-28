@@ -14,39 +14,39 @@ class Game {
   };
   #hiddenWord;
   #wrongLetters = [""];
+  authorizedInput = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+  ];
   constructor() {
     this.#loadGame();
   }
 
   #loadGame() {
-    this.authorizedInput = [
-      "a",
-      "b",
-      "c",
-      "d",
-      "e",
-      "f",
-      "g",
-      "h",
-      "i",
-      "j",
-      "k",
-      "l",
-      "m",
-      "n",
-      "o",
-      "p",
-      "q",
-      "r",
-      "s",
-      "t",
-      "u",
-      "v",
-      "w",
-      "x",
-      "y",
-      "z",
-    ];
     this.#word = new Dictionnary().getOneWord().split("");
     this.#hiddenWord = this.#hideWord(this.#word);
     this.#displayScore();

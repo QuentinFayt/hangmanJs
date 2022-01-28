@@ -220,7 +220,7 @@ class Game {
   #displayText(element) {
     document.querySelector(`#${element}`).innerHTML =
       element === "word"
-        ? this.#hiddenWord.join("")
+        ? this.#hiddenWord.join(" ")
         : this.#wrongLetters.join(" ").toUpperCase();
   }
   #displayNumberToGuess() {

@@ -20,7 +20,6 @@ function newGame(ev) {
 if (document.querySelector("#loadGame")) {
   document.querySelector("#loadGame").addEventListener("click", function (ev) {
     this.style = "display:none";
-    this.nextElementSibling.style = "display:flex";
     let obj = { key: "Enter" };
     setTimeout(() => {
       newGame(obj);

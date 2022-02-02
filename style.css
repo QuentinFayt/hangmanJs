@@ -63,6 +63,7 @@ main {
 }
 .word {
   grid-area: word;
+  display: none;
 }
 .result {
   grid-area: result;
@@ -75,7 +76,9 @@ main {
 }
 #word {
   white-space: pre;
-  margin-left: 1em;
+}
+.separator {
+  margin: 0 1em;
 }
 .btn {
   color: #fff;

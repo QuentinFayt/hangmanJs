@@ -23,6 +23,7 @@ if (document.querySelector("#loadGame")) {
     let obj = { key: "Enter" };
     setTimeout(() => {
       newGame(obj);
+      document.querySelector(".word").style = "display:block";
     }, 250);
   });
 }

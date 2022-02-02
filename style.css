@@ -77,6 +77,16 @@ main {
   white-space: pre;
   margin-left: 1em;
 }
-#loadGame {
-  color: black;
+.btn {
+  color: #fff;
+  font-size: 1em;
+  padding: 1em 1em;
+  border: solid #fff 2px;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.btn:hover {
+  border: dashed #fff 2px;
+  cursor: pointer;
 }
